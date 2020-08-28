@@ -9,9 +9,17 @@ class StudentsController < ApplicationController
   end
 
   def new
+    @student = Student.new
+    # render :form
   end
 
   def create
+
+    student_params = params.require(:student).permit(:first_name, :last_name)
+    @student= Student.create(student_params)
+
+
+    redirect_to student_path(@student)
   end
 
 end
